@@ -116,9 +116,351 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    box-sizing: border-box;
   }
+  
+  html {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  /* Empêcher le débordement horizontal sur tous les éléments */
+  div, section, article, aside, header, footer, nav, main {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Conteneurs principaux */
+  .container {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Images responsives */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Textes qui ne doivent pas déborder */
+  h1, h2, h3, h4, h5, h6, p, span, a, button {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Règles spécifiques pour mobile */
+@media (max-width: 768px) {
+  /* Empêcher le scroll horizontal */
+  html, body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+  }
+  
+  /* Conteneurs avec padding réduit sur mobile */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Textes qui s'adaptent à l'écran */
+  .text-3d {
+    font-size: clamp(2rem, 8vw, 4rem);
+    line-height: 1.1;
+    word-wrap: break-word;
+  }
+  
+  /* Grilles responsives */
+  .responsive-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  /* Sections avec padding mobile optimisé */
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Règles pour très petits écrans */
+@media (max-width: 480px) {
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  section {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  /* Empêcher le débordement des textes longs */
+  h1, h2, h3, h4, h5, h6 {
+    font-size: clamp(1.5rem, 6vw, 3rem);
+    line-height: 1.2;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  /* Conteneurs avec largeur forcée */
+  .w-full {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Grilles qui s'adaptent */
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* Flexbox qui ne déborde pas */
+  .flex {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  
+  /* Images qui s'adaptent */
+  img, .relative {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* Règles spécifiques pour empêcher le scroll horizontal */
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Supprimer toutes les barres de scroll */
+html, body, * {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important; /* WebKit */
+}
+
+/* Force la largeur sur tous les éléments mais permet l'affichage */
+* {
+  max-width: 100vw;
+}
+
+/* Conteneurs principaux avec largeur contrôlée mais pas forcée */
+.container, .container-fluid {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Sections avec largeur contrôlée mais pas forcée */
+section:not(.open-stores-section), article, aside, header, footer, nav, main {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Textes qui ne débordent jamais mais restent visibles */
+h1, h2, h3, h4, h5, h6, p, span, a, button {
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Images et logos qui s'adaptent mais restent visibles */
+img, .relative {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Règles spécifiques pour les logos dans la navbar */
+.navbar .relative {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* S'assurer que les images Next.js s'affichent */
+img[alt*="Logo"], img[alt*="logo"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Conteneurs de logo qui doivent rester visibles */
+.flex-shrink-0 {
+  flex-shrink: 0 !important;
+  min-width: auto !important;
+  max-width: none !important;
+}
+
+/* Règles pour les logos sur mobile */
+@media (max-width: 768px) {
+  .navbar .relative {
+    width: 4rem !important; /* w-16 */
+    height: 4rem !important; /* h-16 */
+    min-width: 4rem !important;
+    max-width: 4rem !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* S'assurer que les images s'affichent sur mobile */
+  img {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Forcer l'affichage des images Next.js */
+  .next-image {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+/* Règles d'urgence pour les logos */
+.navbar img,
+.navbar .next-image,
+.navbar .relative img {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* Règles spécifiques pour le footer avec logo */
+.footer-logo-section .relative {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 4rem !important; /* w-16 */
+  height: 4rem !important; /* h-16 */
+  min-width: 4rem !important;
+  max-width: 4rem !important;
+}
+
+.footer-logo-section img {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* Règles d'urgence pour tous les logos */
+.navbar img,
+.navbar .next-image,
+.navbar .relative img,
+footer img,
+footer .next-image,
+footer .relative img {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* Règles spécifiques pour la section open-stores - Version simplifiée */
+.open-stores-section .flex {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: max-content !important;
+}
+
+.open-stores-section .flex-shrink-0 {
+  flex-shrink: 0 !important;
+}
+
+.open-stores-section .relative.overflow-hidden {
+  overflow: hidden !important;
+  width: 100% !important;
+}
+
+.open-stores-section .group {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+/* Animation de défilement simplifiée */
+.open-stores-section .animate-scroll {
+  animation: scroll-left 30s linear infinite !important;
+}
+
+/* Règles d'urgence pour forcer l'animation */
+.animate-scroll {
+  animation: scroll-left 30s linear infinite !important;
+  transform: translateX(0) !important;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0) !important;
+  }
+  100% {
+    transform: translateX(-50%) !important;
+  }
+}
+
+/* Responsive grid amélioré */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+@media (max-width: 640px) {
+  .responsive-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 0 0.75rem;
   }
 }
 
@@ -195,12 +537,6 @@
 
 .gold-border {
   border-color: oklch(0.97 0 0);
-}
-
-@media (max-width: 768px) {
-  .text-3d {
-    font-size: clamp(2rem, 8vw, 4rem);
-  }
 }
 
 .responsive-grid {

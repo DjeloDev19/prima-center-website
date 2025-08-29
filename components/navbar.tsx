@@ -22,19 +22,20 @@ export function Navbar() {
   }
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm navbar">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center" onClick={handleLinkClick}>
-              {/* Votre logo personnalisé - Remplacez le chemin par celui de votre logo */}
-              <div className="relative w-20 h-20 flex-shrink-0">
+              {/* Votre logo personnalisé - Version robuste pour mobile */}
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 bg-transparent">
                 <Image
-                  src="/logo-prima-center-light.png" // 👈 REMPLACEZ PAR LE CHEMIN DE VOTRE LOGO
+                  src="/logo-prima-center-light.png"
                   alt="PRIMA CENTER Logo"
-                  fill
-                  className="object-contain"
+                  width={80}
+                  height={80}
+                  className="object-contain w-full h-full"
                   priority
                 />
               </div>
@@ -148,102 +149,110 @@ export function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-gray-900 hover:text-yellow-600 transition-colors"
+            className="lg:hidden p-2 text-gray-900 hover:text-yellow-600 transition-all duration-300 transform hover:scale-110"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <div className="relative w-6 h-6">
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6 absolute inset-0 transition-all duration-300 transform rotate-180 scale-100 opacity-100" />
+              ) : (
+                <Menu className="h-6 w-6 absolute inset-0 transition-all duration-300 transform rotate-0 scale-100 opacity-100" />
+              )}
+            </div>
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-gray-200">
-            <div className="flex flex-col space-y-4 pt-4">
-              <Link 
-                href="/about" 
-                className={`transition-colors font-medium ${
-                  isActiveLink('/about') 
-                    ? 'text-yellow-600 border-l-4 border-yellow-600 pl-2' 
-                    : 'text-gray-900 hover:text-yellow-600'
-                }`}
-                onClick={handleLinkClick}
-              >
-                À Propos
-              </Link>
-              <div className="space-y-2">
-                <span className="text-gray-900 font-medium">Nos Univers</span>
-                <div className="pl-4 space-y-2">
-                  <Link 
-                    href="/boutiques" 
-                    className={`block transition-colors ${
-                      isActiveLink('/boutiques')
-                        ? 'text-yellow-600 border-l-4 border-yellow-600 pl-2'
-                        : 'text-gray-600 hover:text-yellow-600'
-                    }`}
-                    onClick={handleLinkClick}
-                  >
-                    Boutiques
-                  </Link>
-                  <Link 
-                    href="/restaurants" 
-                    className={`block transition-colors ${
-                      isActiveLink('/restaurants')
-                        ? 'text-yellow-600 border-l-4 border-yellow-600 pl-2'
-                        : 'text-gray-600 hover:text-yellow-600'
-                    }`}
-                    onClick={handleLinkClick}
-                  >
-                    Restaurants
-                  </Link>
-                  <Link 
-                    href="/fitness" 
-                    className={`block transition-colors ${
-                      isActiveLink('/fitness')
-                        ? 'text-yellow-600 border-b-2 border-yellow-600'
-                        : 'text-gray-600 hover:text-yellow-600'
-                    }`}
-                    onClick={handleLinkClick}
-                  >
-                    My Fitness
-                  </Link>
-                </div>
+        <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen 
+            ? 'max-h-96 opacity-100 mt-4 pb-4 border-t border-gray-200' 
+            : 'max-h-0 opacity-0 mt-0 pb-0 border-t-0'
+        }`}>
+          <div className="flex flex-col space-y-4 pt-4">
+            <Link 
+              href="/about" 
+              className={`transition-all duration-300 transform ${
+                isActiveLink('/about') 
+                  ? 'text-yellow-600 border-l-4 border-yellow-600 pl-2 translate-x-0' 
+                  : 'text-gray-900 hover:text-yellow-600 hover:translate-x-2'
+              }`}
+              onClick={handleLinkClick}
+            >
+              À Propos
+            </Link>
+            <div className="space-y-2">
+              <span className="text-gray-900 font-medium">Nos Univers</span>
+              <div className="pl-4 space-y-2">
+                <Link 
+                  href="/boutiques" 
+                  className={`block transition-all duration-300 transform ${
+                    isActiveLink('/boutiques')
+                      ? 'text-yellow-600 border-l-4 border-yellow-600 pl-2 translate-x-0'
+                      : 'text-gray-600 hover:text-yellow-600 hover:translate-x-2'
+                  }`}
+                  onClick={handleLinkClick}
+                >
+                  Boutiques
+                </Link>
+                <Link 
+                  href="/restaurants" 
+                  className={`block transition-all duration-300 transform ${
+                    isActiveLink('/restaurants')
+                      ? 'text-yellow-600 border-l-4 border-yellow-600 pl-2 translate-x-0'
+                      : 'text-gray-600 hover:text-yellow-600 hover:translate-x-2'
+                  }`}
+                  onClick={handleLinkClick}
+                >
+                  Restaurants
+                </Link>
+                <Link 
+                  href="/fitness" 
+                  className={`block transition-all duration-300 transform ${
+                    isActiveLink('/fitness')
+                      ? 'text-yellow-600 border-b-2 border-yellow-600 translate-x-0'
+                      : 'text-gray-600 hover:text-yellow-600 hover:translate-x-2'
+                  }`}
+                  onClick={handleLinkClick}
+                >
+                  My Fitness
+                </Link>
               </div>
-              <Link 
-                href="/services" 
-                className={`transition-colors font-medium ${
-                  isActiveLink('/services') 
-                    ? 'text-yellow-600 border-l-4 border-yellow-600 pl-2' 
-                    : 'text-gray-900 hover:text-yellow-600'
-                }`}
-                onClick={handleLinkClick}
-              >
-                Services & Infos
-              </Link>
-              <Link 
-                href="/actu" 
-                className={`transition-colors font-medium ${
-                  isActiveLink('/actu') 
-                    ? 'text-yellow-600 border-l-4 border-yellow-600 pl-2' 
-                    : 'text-gray-900 hover:text-yellow-600'
-                }`}
-                onClick={handleLinkClick}
-              >
-                Actus
-              </Link>
-              <Link 
-                href="/contact" 
-                className={`transition-colors font-medium ${
-                  isActiveLink('/contact') 
-                    ? 'text-yellow-600 border-l-4 border-yellow-600 pl-2' 
-                    : 'text-gray-900 hover:text-yellow-600'
-                }`}
-                onClick={handleLinkClick}
-              >
-                Contact
-              </Link>
             </div>
+            <Link 
+              href="/services" 
+              className={`transition-all duration-300 transform ${
+                isActiveLink('/services') 
+                  ? 'text-yellow-600 border-l-4 border-yellow-600 pl-2 translate-x-0' 
+                  : 'text-gray-900 hover:text-yellow-600 hover:translate-x-2'
+              }`}
+              onClick={handleLinkClick}
+            >
+              Services & Infos
+            </Link>
+            <Link 
+              href="/actu" 
+              className={`transition-all duration-300 transform ${
+                isActiveLink('/actu') 
+                  ? 'text-yellow-600 border-l-4 border-yellow-600 pl-2 translate-x-0' 
+                  : 'text-gray-900 hover:text-yellow-600 hover:translate-x-2'
+              }`}
+              onClick={handleLinkClick}
+            >
+              Actus
+            </Link>
+            <Link 
+              href="/contact" 
+              className={`transition-all duration-300 transform ${
+                isActiveLink('/contact') 
+                  ? 'text-yellow-600 border-l-4 border-yellow-600 pl-2 translate-x-0' 
+                  : 'text-gray-900 hover:text-yellow-600 hover:translate-x-2'
+              }`}
+              onClick={handleLinkClick}
+            >
+              Contact
+            </Link>
           </div>
-        )}
+        </div>
       </div>
 
       {/* Overlay pour fermer le dropdown quand on clique ailleurs */}

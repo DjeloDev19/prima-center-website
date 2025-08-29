@@ -53,7 +53,7 @@ export function OpenStores() {
   }
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50 open-stores-section">
       <div className="container mx-auto px-4">
         {/* Titre principal */}
         <div className="text-center mb-16">
@@ -63,33 +63,33 @@ export function OpenStores() {
         </div>
 
         {/* Container pour le défilement */}
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden w-full">
           {/* Ligne de défilement automatique */}
-          <div className="flex animate-scroll">
+          <div className="flex animate-scroll w-full">
             {/* Premier groupe de logos */}
             {boutiques.map((boutique) => (
               <div
                 key={`first-${boutique.id}`}
-                className="group flex-shrink-0 flex flex-col items-center mx-8 md:mx-12 lg:mx-16"
+                className="group flex-shrink-0 flex flex-col items-center mx-2 sm:mx-4 md:mx-8 lg:mx-12"
               >
-                {/* Logo avec effet de survol */}
-                <div className="w-24 h-24 md:w-32 md:h-32 relative bg-white rounded-lg shadow-md group-hover:shadow-xl transition-all duration-300 flex items-center justify-center p-4">
+                {/* Logo avec effet de survol - LOGOS PLUS GRANDS SUR MOBILE */}
+                <div className="w-28 h-28 sm:w-28 sm:h-28 md:w-36 md:h-36 relative bg-white rounded-lg shadow-md group-hover:shadow-xl transition-all duration-300 flex items-center justify-center p-2 sm:p-4">
                   <Image
                     src={boutique.logo_url || "/placeholder-logo.png"}
                     alt={boutique.name}
                     fill
-                    className="object-contain p-2 group-hover:scale-110 transition-transform duration-300"
+                    className="object-contain p-1 sm:p-2 group-hover:scale-110 transition-transform duration-300"
                   />
                   {/* Overlay blanc au survol */}
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 rounded-lg transition-opacity duration-300"></div>
                 </div>
                 
-                {/* Nom de la boutique */}
-                <div className="mt-3 text-center">
-                  <h3 className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-yellow-600 transition-colors">
+                {/* Nom de la boutique - ÉCRITURES PLUS PETITES SUR MOBILE */}
+                <div className="mt-2 sm:mt-3 text-center w-full max-w-[80px] sm:max-w-[100px] md:max-w-none">
+                  <h3 className="text-[10px] sm:text-xs font-semibold text-gray-900 group-hover:text-yellow-600 transition-colors break-words leading-tight">
                     {boutique.name}
                   </h3>
-                  <p className="text-xs text-gray-600 mt-1">{boutique.category}</p>
+                  <p className="text-[8px] sm:text-xs text-gray-600 mt-1 break-words leading-tight">{boutique.category}</p>
                 </div>
               </div>
             ))}
@@ -98,26 +98,26 @@ export function OpenStores() {
             {boutiques.map((boutique) => (
               <div
                 key={`second-${boutique.id}`}
-                className="group flex-shrink-0 flex flex-col items-center mx-8 md:mx-12 lg:mx-16"
+                className="group flex-shrink-0 flex flex-col items-center mx-2 sm:mx-4 md:mx-8 lg:mx-12"
               >
-                {/* Logo avec effet de survol */}
-                <div className="w-24 h-24 md:w-32 md:h-32 relative bg-white rounded-lg shadow-md group-hover:shadow-xl transition-all duration-300 flex items-center justify-center p-4">
+                {/* Logo avec effet de survol - LOGOS PLUS GRANDS SUR MOBILE */}
+                <div className="w-28 h-28 sm:w-28 sm:h-28 md:w-36 md:h-36 relative bg-white rounded-lg shadow-md group-hover:shadow-xl transition-all duration-300 flex items-center justify-center p-2 sm:p-4">
                   <Image
                     src={boutique.logo_url || "/placeholder-logo.png"}
                     alt={boutique.name}
                     fill
-                    className="object-contain p-2 group-hover:scale-110 transition-transform duration-300"
+                    className="object-contain p-1 sm:p-2 group-hover:scale-110 transition-transform duration-300"
                   />
                   {/* Overlay blanc au survol */}
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 rounded-lg transition-opacity duration-300"></div>
                 </div>
                 
-                {/* Nom de la boutique */}
-                <div className="mt-3 text-center">
-                  <h3 className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-yellow-600 transition-colors">
+                {/* Nom de la boutique - ÉCRITURES PLUS PETITES SUR MOBILE */}
+                <div className="mt-2 sm:mt-3 text-center w-full max-w-[80px] sm:max-w-[100px] md:max-w-none">
+                  <h3 className="text-[10px] sm:text-xs font-semibold text-gray-900 group-hover:text-yellow-600 transition-colors break-words leading-tight">
                     {boutique.name}
                   </h3>
-                  <p className="text-xs text-gray-600 mt-1">{boutique.category}</p>
+                  <p className="text-[8px] sm:text-xs text-gray-600 mt-1 break-words leading-tight">{boutique.category}</p>
                 </div>
               </div>
             ))}

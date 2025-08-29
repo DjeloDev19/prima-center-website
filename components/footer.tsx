@@ -6,20 +6,21 @@ import Image from "next/image"
 
 export function Footer() {
   return (
-    <footer className="bg-white text-gray-800">
+    <footer className="bg-white text-gray-800 footer-logo-section">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Colonne 1 - À propos du centre */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3 mb-4">
-              {/* Votre logo personnalisé - Remplacez le chemin par celui de votre logo */}
-              <div className="relative w-16 h-16 flex-shrink-0">
+              {/* Votre logo personnalisé - Version robuste */}
+              <div className="relative w-16 h-16 flex-shrink-0 bg-transparent">
                 <Image
-                  src="/logo-prima-center-light.png" // 👈 REMPLACEZ PAR LE CHEMIN DE VOTRE LOGO
+                  src="/logo-prima-center-light.png"
                   alt="PRIMA CENTER Logo"
-                  fill
-                  className="object-contain"
+                  width={64}
+                  height={64}
+                  className="object-contain w-full h-full"
                 />
               </div>
             </div>

@@ -149,14 +149,14 @@ export function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-gray-900 hover:text-yellow-600 transition-all duration-300 transform hover:scale-110"
+            className="lg:hidden p-2 text-gray-900 hover:text-yellow-600 transition-all duration-300 transform hover:scale-110 flex items-center justify-center"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <div className="relative w-6 h-6">
+            <div className="relative w-6 h-6 flex items-center justify-center">
               {isMobileMenuOpen ? (
-                <X className="h-6 w-6 absolute inset-0 transition-all duration-300 transform rotate-180 scale-100 opacity-100" />
+                <X className="h-6 w-6 transition-all duration-300 transform rotate-180 scale-100 opacity-100" />
               ) : (
-                <Menu className="h-6 w-6 absolute inset-0 transition-all duration-300 transform rotate-0 scale-100 opacity-100" />
+                <Menu className="h-6 w-6 transition-all duration-300 transform rotate-0 scale-100 opacity-100" />
               )}
             </div>
           </button>
